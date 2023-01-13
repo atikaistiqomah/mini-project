@@ -130,9 +130,5 @@ include('query.php');
         </table>
     </div>
 
-    <div class = "container">
-        
-    </div>
-
 </body>
 
