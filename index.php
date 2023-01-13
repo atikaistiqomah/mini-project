@@ -1,3 +1,6 @@
+<?php
+include("query.php");
+?>
 <head>
     <title>mini-project</title>
 
@@ -134,3 +137,4 @@
 
 
 </body>
+
