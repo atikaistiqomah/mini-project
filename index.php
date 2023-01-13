@@ -1,5 +1,5 @@
 <?php
-include("query.php");
+include('query.php');
 ?>
 <head>
     <title>mini-project</title>
@@ -7,15 +7,14 @@ include("query.php");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js" integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-inverse">
         <ul class="nav navbar-nav">
-            <li><a href="#">Tabel</a></li>
-            <li><a href="#">Grafik pie dan tabel</a></li>
-            <li><a href="#">Grafik bar</a></li>
         </ul>
     </nav>
 
@@ -58,17 +57,42 @@ include("query.php");
         </table>
     </div>
     
-    <!-- grafik pie dan keterangan -->
-    <div class = "container">
-        <div class="row">
-            <div class="col-sm-6" style="background-color:yellow;">
-                <p>Sed ut perspiciatis...</p>
-            </div>
-            <div class="col-sm-6" style="background-color:pink;">
-                <p>Sed ut perspiciatis...</p>
-            </div>
-        </div>
-    </div>
+    <!-- pie dan keterangan -->
+    
+    <table class="table table-bordered mx-auto">
+        <thead>
+            <tr>
+            <th>No</th>
+            <th>Delivery Channel</th>
+            <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+
+            if(is_array($fetch3)) {
+                $sn3 = 1;
+                foreach ($fetch3 as $data3) {
+            ?>
+            <tr>
+                <td><?php echo $sn3;?></td>
+                <td><?php echo $data3['delivery_channel'];?></td>
+                <td>Rp<?php echo number_format($data3['total_amount']);?></td>
+            </tr>
+            <?php
+            $sn3++;}
+            } else{
+            ?>
+            <tr>
+                <td colspan="8">
+                    <?php echo $fetch3;?>
+                </td>
+            </tr>
+            <?php } 
+            ?>
+        </tbody>
+    </table>
+
 
     <!-- grafik bar dan tabel -->
     <div class="table-responsive">
@@ -107,9 +131,7 @@ include("query.php");
     </div>
 
     <div class = "container">
-        <div class="row" style="background-color:red;">
-            <p>Sed ut perspiciatis...</p>
-        </div>
+        
     </div>
 
 </body>
