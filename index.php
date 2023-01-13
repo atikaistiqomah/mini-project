@@ -91,19 +91,12 @@
             // Password => empty
             // Database name => test
             // Passing these 4 parameters
-            $connect = mysqli_connect("localhost", "root", "", "miniproject"); 
+            $connect = mysqli_connect("localhost", "root", "", "mini-project"); 
               
             $query = '';
             $table_data = '';
             
-            // json file name
-            $filename = "data-dummy-trx-qris.json";
             
-            // Read the JSON file in PHP
-            $data = file_get_contents($filename); 
-            
-            // Convert the JSON String into PHP Array
-            $array = json_decode($data, true); 
             
             // Extracting row by row
             foreach($array as $row) {
@@ -112,20 +105,7 @@
                 // into database Make Multiple 
                 // Insert Query 
                 $query .= 
-                "INSERT INTO data_dummy_trx_qris VALUES 
-                ('".$row["id"]."', '".$row["retrieval_reference_number"]."', 
-                '".$row["delivery_channel"]."', 
-                '".$row["customer_pan"]."', 
-                '".$row["trx_date_time"]."', 
-                '".$row["trx_status"]."', 
-                '".$row["amount"]."', 
-                '".$row["merchant_pan"]."', 
-                '".$row["merchant_name"]."', 
-                '".$row["merchant_city"]."', 
-                '".$row["merchant_postal_code"]."', 
-                '".$row["mcc"]."', 
-                '".$row["reason_code"]."'); "; 
-               
+                
                 $table_data .= '
                 <tr>
                     <td>'.$row["delivery_channel"].'</td>
