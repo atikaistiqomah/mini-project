@@ -25,19 +25,35 @@ include("query.php");
         <table class="table">
             <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Delivery Channel</th>
-                  <th>Frekuensi Trx Sukses</th>
-                  <th>Frekuensi Trx Gagal</th>
+                    <th>No</th>
+                    <th>Delivery Channel</th>
+                    <th>Frekuensi Trx Sukses</th>
+                    <th>Frekuensi Trx Gagal</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                if(is_array($fetch)) {
+                    $sn = 1;
+                    foreach ($fetch as $data) {
+                ?>
                 <tr>
-                    <td>#</td>
-                    <td>#</td>
-                    <td>#</td>
-                    <td>#</td>
+                    <td><?php echo $sn;?></td>
+                    <td><?php echo $data['delivery_channel'];?></td>
+                    <td><?php echo $data['trx_success'];?></td>
+                    <td><?php echo $data['trx_failed'];?></td>
                 </tr>
+                <?php
+                $sn++;}
+                } else{
+                ?>
+                <tr>
+                    <td colspan="8">
+                        <?php echo $fetch;?>
+                    </td>
+                </tr>
+                <?php } 
+                ?>
             </tbody>
         </table>
     </div>
@@ -79,62 +95,6 @@ include("query.php");
             <p>Sed ut perspiciatis...</p>
         </div>
     </div>
-
-
-    <div class="container box">
-        <h3 align="center">
-            Geeks for Geeks Import JSON 
-            data into database
-        </h3><br />
-          
-        <?php
-          
-            // Server name => localhost
-            // Username => root
-            // Password => empty
-            // Database name => test
-            // Passing these 4 parameters
-            $connect = mysqli_connect("localhost", "root", "", "mini-project"); 
-              
-            $query = '';
-            $table_data = '';
-            
-            
-            
-            // Extracting row by row
-            foreach($array as $row) {
-  
-                // Database query to insert data 
-                // into database Make Multiple 
-                // Insert Query 
-                $query .= 
-                
-                $table_data .= '
-                <tr>
-                    <td>'.$row["delivery_channel"].'</td>
-                    <td>'.$row["trx_status"].'</td>
-                    <td>'.$row["amount"].'</td>
-                </tr>
-                '; // Data for display on Web page
-            }
-  
-            if(mysqli_multi_query($connect, $query)) {
-                echo '<h3>Inserted JSON Data</h3><br />';
-                echo '
-                <table class="table table-bordered">
-                <tr>
-                    <th width="45%">delivery channel</th>
-                    <th width="10%">trx status</th>
-                    <th width="45%">amount</th>
-                </tr>
-                ';
-                echo $table_data;  
-                echo '</table>';
-            }
-          ?>
-        <br />
-    </div>
-
 
 </body>
 
