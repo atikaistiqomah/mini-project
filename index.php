@@ -81,11 +81,27 @@ include("query.php");
                 </tr>
             </thead>
             <tbody>
+            <?php
+                if(is_array($fetch2)) {
+                    $sn2 = 1;
+                    foreach ($fetch2 as $data2) {
+                ?>
                 <tr>
-                    <td>#</td>
-                    <td>#</td>
-                    <td>#</td>
+                    <td><?php echo $sn2;?></td>
+                    <td><?php echo $data2['city'];?></td>
+                    <td><?php echo $data2['trx_success'];?></td>
                 </tr>
+                <?php
+                $sn2++;}
+                } else{
+                ?>
+                <tr>
+                    <td colspan="8">
+                        <?php echo $fetch2;?>
+                    </td>
+                </tr>
+                <?php } 
+                ?>
             </tbody>
         </table>
     </div>
